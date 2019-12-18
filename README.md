@@ -1,9 +1,4 @@
-## Bank tech test
-
-#### Project setup steps: 
- 1. Initialised git, created a Gemfile through 'bundle init'.
- 2. Installed SimpleCov.
- 3. Installed Rubocop.
+## Gilded Rose test
 
 #### Design approach: 
 
