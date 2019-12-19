@@ -2,12 +2,12 @@
 describe("Gilded Rose - Shop", function() {
 
   describe ("can read an item's property", function () {
-    xit("should return the name of the item (by index) when there is only one item", function() {
+    it("should return the name of the item (by index) when there is only one item", function() {
       const gildedRose = new Shop([ new Item("Aged Brie", 0, 0) ]);
       expect(gildedRose.showItemName(0)).toEqual("Aged Brie");
     });
 
-    xit("should return the names of all items (by index) when there are multiple items", function() {
+    it("should return the names of all items (by index) when there are multiple items", function() {
       const list = [new Item("Aged Brie", 0, 0), new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0), new Item("Sulfuras, Hand of Ragnaros", 0, 0)]
       const gildedRose = new Shop(list);
       expect(gildedRose.showItemName(0)).toEqual("Aged Brie");
@@ -39,10 +39,16 @@ describe("Gilded Rose - Shop", function() {
 
   describe ("for Aged Brie items", function () {
     it("should update the quality of the Aged Brie item (increase by 1)", function() {
-      const gildedRose = new Shop([ new AgedBrie("Aged Brie", 0, 0) ]);
+      const gildedRose = new Shop([ new AgedBrie("Aged Brie", 2, 0) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(1);
     });
+
+    it("after updating, it should return an array with updated quality value", function() {
+      const gildedRose = new Shop([ new AgedBrie("Aged Brie", 2, 2) ]);
+      expect(gildedRose.updateQuality()[0].quality).toEqual(3);
+    });
+
   });
 
   describe ("for Sulfuras items", function () {
