@@ -16,6 +16,27 @@ describe("Gilded Rose - Shop", function() {
     });
   });
 
+  describe ("for all items, quality value is always between 0 and 50 (included)", function () {
+    it("should NOT update the quality of the Aged Brie item if current quality is 50", function() {
+      const gildedRose = new Shop([ new Item("Aged Brie", 0, 50) ]);
+      gildedRose.updateQuality()
+      expect(gildedRose.items[0].quality).toEqual(50);
+    });
+
+    it("should NOT update the quality of the Standard item if current qulity value is 0", function() {
+      const gildedRose = new Shop([ new Item("Any item", 15, 0) ]);
+      gildedRose.updateQuality()
+      expect(gildedRose.items[0].quality).toEqual(0);
+    });
+
+    it("should NOT update the quality of the Conjured item if current qulity value is 0", function() {
+      const gildedRose = new Shop([ new Item("Conjured item", 15, 0) ]);
+      gildedRose.updateQuality()
+      expect(gildedRose.items[0].quality).toEqual(0);
+    });
+
+  });
+
   describe ("for Aged Brie items", function () {
     it("should update the quality of the Aged Brie item (increase by 1)", function() {
       const gildedRose = new Shop([ new Item("Aged Brie", 0, 0) ]);
@@ -25,8 +46,14 @@ describe("Gilded Rose - Shop", function() {
   });
 
   describe ("for Sulfuras items", function () {
-    it("should NOT update the quality", function() {
-      const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 0, 5) ]);
+    it("should NOT update the quality when the SellIn value is more than 10", function() {
+      const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 15, 5) ]);
+      gildedRose.updateQuality()
+      expect(gildedRose.items[0].quality).toEqual(5);
+    });
+
+    it("should NOT update the quality when the SellIn value is less than 10", function() {
+      const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 5, 5) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(5);
     });
