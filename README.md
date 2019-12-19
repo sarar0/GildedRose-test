@@ -12,7 +12,7 @@
 
 #### How to install and run code and tests:
 
-    Test can be run by opening the SpecRunner.html file in the browser. The code can be run in the console in the same browser window. 
+    Test can be run by opening the SpecRunner.html file in the browser. The code can be run in the console in the same browser window (as all required filed are linked into the SpecRunner file). 
 
 #### Example from Console:
 
