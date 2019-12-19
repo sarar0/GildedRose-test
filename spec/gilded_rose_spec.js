@@ -75,13 +75,13 @@ describe("Gilded Rose - Shop", function() {
 
     describe ("for Conjured items", function () {
       it("decreases the quality by 2 when SellIn value is more than 0", function() {
-        const gildedRose = new Shop([ new Item("Any item", 15, 10) ]);
+        const gildedRose = new Shop([ new Item("Conjured item", 15, 10) ]);
         gildedRose.updateQuality()
         expect(gildedRose.items[0].quality).toEqual(8);
       });
 
       it("decreases the quality by 4 when SellIn value is 0 or less", function() {
-        const gildedRose = new Shop([ new Item("Any item", 0, 5) ]);
+        const gildedRose = new Shop([ new Item("Conjured item", -1, 5) ]);
         gildedRose.updateQuality()
         expect(gildedRose.items[0].quality).toEqual(1);
       });
