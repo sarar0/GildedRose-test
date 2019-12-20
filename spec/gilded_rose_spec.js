@@ -17,20 +17,20 @@ describe("Gilded Rose - Shop", function() {
   });
 
   describe ("for all items, quality value is always between 0 and 50 (included)", function () {
-    xit("should NOT update the quality of the Aged Brie item if current quality is 50", function() {
-      const gildedRose = new Shop([ new Item("Aged Brie", 0, 50) ]);
+    it("should NOT update the quality of the Aged Brie item if current quality is 50", function() {
+      const gildedRose = new Shop([ new AgedBrie("Aged Brie", 0, 50) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(50);
     });
 
-    xit("should NOT update the quality of the Standard item if current qulity value is 0", function() {
-      const gildedRose = new Shop([ new Item("Any item", 15, 0) ]);
+    it("should NOT update the quality of the Standard item if current qulity value is 0", function() {
+      const gildedRose = new Shop([ new Standard("Standard", 15, 0) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(0);
     });
 
-    xit("should NOT update the quality of the Conjured item if current qulity value is 0", function() {
-      const gildedRose = new Shop([ new Item("Conjured item", 15, 0) ]);
+    it("should NOT update the quality of the Conjured item if current qulity value is 0", function() {
+      const gildedRose = new Shop([ new Conjured("Conjured", 15, 0) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(0);
     });
