@@ -37,6 +37,27 @@ describe("Gilded Rose - Shop", function() {
 
   });
 
+  describe ("for all items, except Sulfuras, SellIn descreases by one", function () {
+    it("sellIn decreases by 1", function() {
+      const gildedRose = new Shop([ new AgedBrie("Aged Brie", 10, 50) ]);
+      gildedRose.updateQuality()
+      expect(gildedRose.items[0].sellIn).toEqual(9);
+    });
+
+    it("sellIn decreases by 1", function() {
+      const gildedRose = new Shop([ new Standard("Aged Brie", 15, 50) ]);
+      gildedRose.updateQuality()
+      expect(gildedRose.items[0].sellIn).toEqual(14);
+    });
+
+    it("sellIn stays the same for Sulfuras", function() {
+      const gildedRose = new Shop([ new Sulfuras("Sulfuras", 15, 10) ]);
+      gildedRose.updateQuality()
+      expect(gildedRose.items[0].sellIn).toEqual(15);
+    });
+
+  });
+
   describe ("for Aged Brie items", function () {
     it("should update the quality of the Aged Brie item (increase by 1)", function() {
       const gildedRose = new Shop([ new AgedBrie("Aged Brie", 2, 0) ]);
@@ -52,40 +73,40 @@ describe("Gilded Rose - Shop", function() {
   });
 
   describe ("for Sulfuras items", function () {
-    xit("should NOT update the quality when the SellIn value is more than 10", function() {
-      const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 15, 5) ]);
+    it("should NOT update the quality", function() {
+      const gildedRose = new Shop([ new Sulfuras("Sulfuras, Hand of Ragnaros", 15, 5) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(5);
     });
 
-    xit("should NOT update the quality when the SellIn value is less than 10", function() {
-      const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 5, 5) ]);
-      gildedRose.updateQuality()
-      expect(gildedRose.items[0].quality).toEqual(5);
+    it("should NOT update the sellIn value", function() {
+      const gildedRose = new Shop([ new Sulfuras("Sulfuras, Hand of Ragnaros", 5, 5) ]);
+      gildedRose.updateSellIn()
+      expect(gildedRose.items[0].sellIn).toEqual(5);
     });
   });
 
   describe ("for Backstage Passes items", function () {
-    xit("should update the quality (increase by 1) when the SellIn value is more than 10", function() {
-      const gildedRose = new Shop([ new Item('Backstage passes to a TAFKAL80ETC concert', 15, 5) ]);
+    it("should update the quality (increase by 1) when the SellIn value is more than 10", function() {
+      const gildedRose = new Shop([ new Pass('Backstage passes to a TAFKAL80ETC concert', 15, 5) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(6);
     });
 
-    xit("should update the quality (increase by 2) when the SellIn value is between 10 and 6", function() {
-      const gildedRose = new Shop([ new Item('Backstage passes to a TAFKAL80ETC concert', 8, 5) ]);
+    it("should update the quality (increase by 2) when the SellIn value is between 10 and 6", function() {
+      const gildedRose = new Shop([ new Pass('Backstage passes to a TAFKAL80ETC concert', 8, 5) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(7);
     });
 
-    xit("should update the quality (increase by 3) when the SellIn value is between 5 and 0", function() {
-      const gildedRose = new Shop([ new Item('Backstage passes to a TAFKAL80ETC concert', 4, 5) ]);
+    it("should update the quality (increase by 3) when the SellIn value is between 5 and 0", function() {
+      const gildedRose = new Shop([ new Pass('Backstage passes to a TAFKAL80ETC concert', 4, 5) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(8);
     });
 
-    xit("should set the quality to 0 when the SellIn value is 0 or less", function() {
-      const gildedRose = new Shop([ new Item('Backstage passes to a TAFKAL80ETC concert', 0, 19) ]);
+    it("should set the quality to 0 when the SellIn value is 0 or less", function() {
+      const gildedRose = new Shop([ new Pass('Backstage passes to a TAFKAL80ETC concert', 0, 19) ]);
       gildedRose.updateQuality()
       expect(gildedRose.items[0].quality).toEqual(0);
     });
@@ -107,14 +128,14 @@ describe("Gilded Rose - Shop", function() {
     });
 
     describe ("for Conjured items", function () {
-      xit("decreases the quality by 2 when SellIn value is more than 0", function() {
-        const gildedRose = new Shop([ new Item("Conjured item", 15, 10) ]);
+      it("decreases the quality by 2 when SellIn value is more than 0", function() {
+        const gildedRose = new Shop([ new Conjured("Conjured item", 15, 10) ]);
         gildedRose.updateQuality()
         expect(gildedRose.items[0].quality).toEqual(8);
       });
 
-      xit("decreases the quality by 4 when SellIn value is 0 or less", function() {
-        const gildedRose = new Shop([ new Item("Conjured item", -1, 5) ]);
+      it("decreases the quality by 4 when SellIn value is 0 or less", function() {
+        const gildedRose = new Shop([ new Conjured("Conjured item", -1, 5) ]);
         gildedRose.updateQuality()
         expect(gildedRose.items[0].quality).toEqual(1);
       });

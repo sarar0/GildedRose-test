@@ -12,4 +12,8 @@ class Standard extends Item {
         }
     }
 
+    updateItemSellIn() {
+        this.sellIn--;
+    }
+
 }

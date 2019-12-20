@@ -13,7 +13,10 @@ class Conjured extends Item {
         else {
         this.quality = this.quality - this.quality;
         }
+    }
 
+    updateItemSellIn() {
+        this.sellIn--;
     }
 
 }

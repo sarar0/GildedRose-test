@@ -7,4 +7,8 @@ class AgedBrie extends Item {
         this.quality < 50 ? this.quality++ : this.quality;
     }
 
+    updateItemSellIn() {
+        this.sellIn--;
+    }
+
 }
