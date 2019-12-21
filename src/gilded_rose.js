@@ -10,6 +10,7 @@ class Shop {
   constructor(items=[]){
     this.items = items;
   }
+  
   showItemName(index) {
     return this.items[index].name
   }

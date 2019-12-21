@@ -16,6 +16,15 @@ describe("Aged Brie Class", function() {
             expect(brie.quality).toEqual(4);
         });
 
+        describe("edge cases", function() {
+            
+            it("should NOT increase quality when quality is 50", function() {
+                const brie = new AgedBrie("Item name", 10, 50);
+                brie.updateItemQuality();
+                expect(brie.quality).toEqual(50);
+            });
+        });
+
     });
 
 });

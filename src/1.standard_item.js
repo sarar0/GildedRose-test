@@ -4,15 +4,11 @@ class Standard extends Item {
     }
 
     updateItemQuality() {
-        if (this.quality > 0) {
-            this.quality--;
-        }
-        if (this.quality > 1 && this.sellIn < 0 ) {
-            this.quality--;
-        }
+        (this.quality > 1 && this.sellIn < 0 ) ? this.quality -= 2: this.quality;
+        (this.quality > 0 && this.sellIn > 0) ? this.quality-- : this.quality;
     }
 
-    updateItemSellIn() {
+      updateItemSellIn() {
         this.sellIn--;
     }
 
