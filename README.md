@@ -10,7 +10,7 @@ Test can be run by opening the SpecRunner.html file in the browser. The code can
 
 #### Example from Console:
 
-![alt test](lib/console)
+![alt test](lib/console.png)
 
 
 
